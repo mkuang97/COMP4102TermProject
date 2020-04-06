@@ -32,7 +32,7 @@ P Algorithm: https://hal-mines-paristech.archives-ouvertes.fr/hal-00835019/docum
 # Challenge
 The main challenges present with this project are object segmentation, and background interpolation. For object segmentation we need to detect objects within the imagine as well as crop it out of the image precisely. There already exists various forms of object detection, such as YOLO object detection,  watershed algorithm, and using R-CNNS for instance segmentation. We will explore the various techniques in object detection to determine one that would best fit our application and possibly improve the algorithm to suit our needs.
 
-![Example of Project Procedure](https://i.imgur.com/P1GijWd.png)
+![Example of Project Procedure](https://github.com/Krusso/COMP4102TermProject/blob/master/Project.png)
 
 Figure 1: Example of project procedure
 
