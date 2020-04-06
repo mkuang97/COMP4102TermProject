@@ -1,11 +1,15 @@
 # COMP4102 Term Project
 # Automated Background Retrieval
 
-Michael Kuang 101000485
-Kevin Sun 101000157
-Gordon Brown 101002159
-Maxim Kuzmenko 101002578
-Summary
+**Michael Kuang 101000485**
+
+**Kevin Sun 101000157**
+
+**Gordon Brown 101002159**
+
+**Maxim Kuzmenko 101002578**
+
+# Summary
 The goal of this project will be to develop an application that will identify and remove detected object(s) from an image, while filling in the background that was in place of said object(s) naturally. For example, if there is a person and a dog at the beach but the beach image is not sufficient, the application will isolate then remove the person and the dog from the image. The white void left behind by the removal of the images will then be filled with the appropriate background so that it would appear the image never contained the objects in the first place.
 
 # Background
@@ -27,6 +31,11 @@ P Algorithm: https://hal-mines-paristech.archives-ouvertes.fr/hal-00835019/docum
 
 # Challenge
 The main challenges present with this project are object segmentation, and background interpolation. For object segmentation we need to detect objects within the imagine as well as crop it out of the image precisely. There already exists various forms of object detection, such as YOLO object detection,  watershed algorithm, and using R-CNNS for instance segmentation. We will explore the various techniques in object detection to determine one that would best fit our application and possibly improve the algorithm to suit our needs.
+
+![Example of Project Procedure](https://i.imgur.com/P1GijWd.png)
+
+Figure 1: Example of project procedure
+
 
 Background interpolation will be a much more difficult problem given its twofold nature - we must correctly interpolate differing regions of the image as well as convincingly filter the interpolated area to ensure continuity. It is expected that this area will cause the most trouble/challenges as apart from EBP there doesn’t seem to be any efficient ways to interpolate images.
 
