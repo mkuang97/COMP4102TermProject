@@ -21,7 +21,6 @@ def main():
     print("Detecting objects from input image...")
     det_image, masks, labels = retrieve_detected_objects(img)
     
-    
     # resize the image to a workable size (we want to )
     img = rescale(img)
     height, width, channel = img.shape
