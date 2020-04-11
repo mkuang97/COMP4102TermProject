@@ -5,6 +5,7 @@ from object_detection.utility import Watershed
 from matplotlib import pyplot as plt
 import numpy as np
 from exemplar_based_inpainting.source.InpainterV2 import InpainterV2 as paint
+from Biharmonic.Source.Biharmonic import Biharmonic as biharm
 import sys
 
 FLAGS = None
@@ -49,18 +50,34 @@ def main():
             continue
         print("Selected to inpaint {} mask".format(labels[selected]))
         halfPatchWidth = 4
-        i = paint(img, masks[selected].reshape(height, width), halfPatchWidth)
-        if i.checkValidInputs() == True:
-            i.doInpaint()
-            cv2.imwrite("./results/result.jpg", i.result)
-            plt.imshow(i.result)
-            plt.show(block=False)
-        else:
-            print("invalid dimensions")
-            print("img shape {}, dtype {}".format(img.shape, img.dtype))
-            print("mask shape {}, dtype {}".format(masks[selected].shape, masks[selected].dtype))
-            # print(masks[selected].shape)
 
+        prompt = "Select which infill method to use: \n 1. Criminisi \n 2. Biharmonic \n"
+        method = int(input(prompt))
+        if method == -1:
+            break
+        if method < 0 or method >= 3:
+            print("Selected number is out of bounds")
+            continue
+        if method == 1:
+            i = paint(img, masks[selected].reshape(height, width), halfPatchWidth)
+            if i.checkValidInputs() == True:
+                i.doInpaint()
+                cv2.imwrite("./results/result.jpg", i.result)
+                plt.imshow(i.result)
+                plt.show(block=False)
+            else:
+                print("invalid dimensions")
+                print("img shape {}, dtype {}".format(img.shape, img.dtype))
+                print("mask shape {}, dtype {}".format(masks[selected].shape, masks[selected].dtype))
+        if method == 2:
+            m = masks[selected]
+            m = m[:, :, np.newaxis]
+            m = np.concatenate((m,m,m), axis = 2)
+            i = biharm().biharmonic(img, m)
+            cv2.normalize(i, i, 0, 255, cv2.NORM_MINMAX)
+            cv2.imwrite("./results/result.jpg", i)
+            print("Selected mask has been successfully infilled and saved in /results/ as result.jpg")
+    
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("image_file", type=str)

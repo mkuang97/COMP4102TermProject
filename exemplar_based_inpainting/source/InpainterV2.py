@@ -259,9 +259,9 @@ class InpainterV2():
             self.computeConfidence()
             self.computeData()
             self.computeTarget()
-            print ('start', time.asctime())
+            print ('start: ', time.asctime())
             self.computeBestPatch()
-            print ('end :)', time.asctime())
+            print ('end:', time.asctime())
             self.updateMats()
             stay = self.checkEnd()
             if counter % 20:
