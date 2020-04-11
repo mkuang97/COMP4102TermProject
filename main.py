@@ -62,7 +62,7 @@ def main():
             i = paint(img, masks[selected].reshape(height, width), halfPatchWidth)
             if i.checkValidInputs() == True:
                 i.doInpaint()
-                cv2.imwrite("./results/result.jpg", i.result)
+                cv2.imwrite("./results/resultCriminisi.jpg", i.result)
                 plt.imshow(i.result)
                 plt.show(block=False)
             else:
@@ -75,8 +75,8 @@ def main():
             m = np.concatenate((m,m,m), axis = 2)
             i = biharm().biharmonic(img, m)
             cv2.normalize(i, i, 0, 255, cv2.NORM_MINMAX)
-            cv2.imwrite("./results/result.jpg", i)
-            print("Selected mask has been successfully infilled and saved in /results/ as result.jpg")
+            cv2.imwrite("./results/resultBiharmonic.jpg", i)
+            print("Selected mask has been successfully infilled and saved in /results/ as resultBiharmonic.jpg")
     
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
