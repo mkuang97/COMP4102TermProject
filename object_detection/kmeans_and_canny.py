@@ -29,7 +29,7 @@ def kmeans(image, k):
 
     _, thresh = cv2.threshold(cv2.cvtColor(res2, cv2.COLOR_BGR2GRAY), 110, 255, 0) 
 
-    contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    _, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     major_contours = []
     for contour in contours:
@@ -49,7 +49,7 @@ def canny(image):
 
     edges = cv2.Canny(image,100,200)
 
-    contours = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
+    _, contours = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
 
     contoured_img = cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
 
