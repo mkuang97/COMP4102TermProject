@@ -36,10 +36,12 @@ def kmeans(image, k):
         area = cv2.contourArea(contour)
         if area > 35:
             major_contours.append(contour)
+    
+    mask = np.zeros((image.shape))
+    mask[:] = (255, 255, 255)
+    cv2.fillPoly(mask, pts =major_contours, color=(0,0,0))
 
-    contoured_img = cv2.drawContours(image, major_contours, -1, (0, 255, 0), 2)
-
-    cv2.imshow("kmeans with k = " + str(k), contoured_img)
+    cv2.imshow("kmeans with k = " + str(k), mask)
     cv2.waitKey(0)
 
 def canny(image):    
@@ -47,17 +49,15 @@ def canny(image):
 
     edges = cv2.Canny(image,100,200)
 
-    contours = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[0]
+    contours = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
 
-    major_contours = []
-    for contour in contours:
-        area = cv2.contourArea(contour)
-        if area > 20:
-            major_contours.append(contour)
+    contoured_img = cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
 
-    contoured_img = cv2.drawContours(image, major_contours, -1, (0, 255, 0), 2)
+    mask = np.zeros((image.shape))
+    mask[:] = (255, 255, 255)
+    cv2.fillPoly(mask, pts =contours, color=(0,0,0))
 
-    cv2.imshow("method_2", contoured_img)
+    cv2.imshow("canny", mask)
     cv2.waitKey(0)
 
 def tests():
@@ -66,8 +66,8 @@ def tests():
     img = cv2.imread(IMAGE_ROOT+"cards.jpg", cv2.IMREAD_COLOR)
 
     k = 7
-    # kmeans(img, k)
-    canny(img)
+    kmeans(img, k)
+    # canny(img)
 
     # cv2.imshow("original img", img)
     # cv2.waitKey(0)
