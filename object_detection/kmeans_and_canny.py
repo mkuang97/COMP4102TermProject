@@ -37,7 +37,7 @@ def kmeans(image, k):
         if area > 35:
             major_contours.append(contour)
 
-    contoured_img = cv2.drawContours(res2, major_contours, -1, (0, 255, 0), 2)
+    contoured_img = cv2.drawContours(image, major_contours, -1, (0, 255, 0), 2)
 
     cv2.imshow("kmeans with k = " + str(k), contoured_img)
     cv2.waitKey(0)
@@ -55,7 +55,7 @@ def canny(image):
         if area > 20:
             major_contours.append(contour)
 
-    contoured_img = cv2.drawContours(np.uint8(image), major_contours, -1, (0, 255, 0), -1)
+    contoured_img = cv2.drawContours(image, major_contours, -1, (0, 255, 0), 2)
 
     cv2.imshow("method_2", contoured_img)
     cv2.waitKey(0)
@@ -63,10 +63,10 @@ def canny(image):
 def tests():
     
     IMAGE_ROOT = "../images/"
-    img = cv2.imread(IMAGE_ROOT+"person_dog.jpg", cv2.IMREAD_COLOR)
+    img = cv2.imread(IMAGE_ROOT+"cards.jpg", cv2.IMREAD_COLOR)
 
     k = 7
-    kmeans(img, k)
+    # kmeans(img, k)
     canny(img)
 
     # cv2.imshow("original img", img)
