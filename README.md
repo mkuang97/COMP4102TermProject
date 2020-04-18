@@ -12,7 +12,9 @@
 # Running Instructions
 First include all the necessary packages we have specified in the environment.yml file. We used a conda environment to run our python program. First run "conda env create -f environment.yml" to create the conda environment from our yaml file. Then run:
 
-python main.py <image_file_url>
+python main.py <image_file_path>
+e.g
+python main.py ./images/person_dog.jpg
 
 Then follow instructions in console to proceed.
 
