@@ -28,8 +28,8 @@ def kmeans(image, k):
     res2 = res.reshape((converted_color_img.shape))
 
     _, thresh = cv2.threshold(cv2.cvtColor(res2, cv2.COLOR_BGR2GRAY), 110, 255, 0) 
-
-    contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    
+    _, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     major_contours = []
     for contour in contours:

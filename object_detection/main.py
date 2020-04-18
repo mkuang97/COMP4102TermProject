@@ -10,7 +10,8 @@ import torch
 import json
 # from skimage.morphology import watershed
 
-# from my_utility import Watershed
+# import utility
+# from utility import Watershed
 import torchvision.models as models
 import os
 
@@ -106,10 +107,12 @@ def retrieve_detected_objects(img):
     return det_img, detected_masks, detected_labels
 
 def main():
-    img = cv2.imread(IMAGE_ROOT+"person_dog.jpg", cv2.IMREAD_COLOR)
-
-    # watershed = Watershed(img)
-    # watershed.segment2()
+    img = cv2.imread(IMAGE_ROOT+"coins.jpg", cv2.IMREAD_COLOR)
+    # img = cv2.imread(IMAGE_ROOT+"person_dog.jpg", cv2.IMREAD_COLOR)
+    img = cv2.resize(img, (400, 400))
+    import utility
+    watershed = utility.Watershed(img)
+    watershed.segment2()
     # b = basic_segmentation(img)
     # cv2.imshow("Basic Segmentation", b)
     # test_watershed = my_watershed(img)
@@ -117,7 +120,7 @@ def main():
     # cv2.waitKey()
     # dst = watershed1(img)
 
-    masks, labels = retrieve_detected_objects(img)
+    # masks, labels = retrieve_detected_objects(img)
     cv2.waitKey()
 if __name__=='__main__':
     main()
