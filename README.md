@@ -9,6 +9,14 @@
 
 **Maxim Kuzmenko 101002578**
 
+# Running Instructions
+First include all the necessary packages we have specified in the environment.yml file. We used a conda environment to run our python program. First run "conda env create -f environment.yml" to create the conda environment from our yaml file. Then run:
+
+python main.py <image_file_url>
+
+Then follow instructions in console to proceed.
+
+
 # Summary
 The goal of this project will be to develop an application that will identify and remove detected object(s) from an image, while filling in the background that was in place of said object(s) naturally. For example, if there is a person and a dog at the beach but the beach image is not sufficient, the application will isolate then remove the person and the dog from the image. The white void left behind by the removal of the images will then be filled with the appropriate background so that it would appear the image never contained the objects in the first place.
 
